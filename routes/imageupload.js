@@ -14,6 +14,15 @@ const storage = multer.diskStorage({
   }
 });
 
+const fileFilter = (req, file, cb) => {
+  // Check file type (e.g., only allow image files)
+  if (file.mimetype.startsWith("image/")) {
+    cb(null, true); // Allow file
+  } else {
+    cb(new Error("Invalid file type. Only images are allowed!"), false); // Reject file
+  }
+};
+
 
 // Upload middleware
 const upload = multer({
@@ -21,6 +30,8 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: fileFilter
 });
+
+
 
 // Image Upload Route
 router.post("/upload", upload.single("image"), (req, res) => {
