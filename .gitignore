@@ -2,3 +2,8 @@ node_modules/
 build/
 .env
 /client/car-visualizer-front/node_modules/
+*/venv
+*/media
+*/.env
+db.sqlite3
+*/db.sqlite3

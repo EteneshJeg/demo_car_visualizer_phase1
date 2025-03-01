@@ -1,30 +1,23 @@
-import { Route,Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import login from "./pages/login"
-import register from "./pages/register"
-
-
+import { Routes, Route } from "react-router-dom";
+import { useUser } from "./store/UserContext";
+import SpinnerComponent from "./components/SpinnerComponent";
+import UploadImage from "./pages/UploadImage";
+import AuthPage from "./pages/AuthPage";
+import ToastComponent from "./components/ToastComponent";
 function App() {
+  const { isLoading } = useUser();
 
   return (
     <>
-      <div>
-        {/* <Routes>
-          <Route path="/" element ={ <Home />} />
-          <Route path="/login" element ={ <login />} />
-          <Route path="/register" element ={ <register />} />
+      <Routes>
+        <Route path="/" element={<UploadImage />} />
+        <Route path="/auth" element={<AuthPage />} />
+      </Routes>
+      {isLoading && <SpinnerComponent />}
+      <ToastComponent />
 
-        </Routes> */}
-      <h1>
-          Get to work!   
-      </h1>
-      <Home />
-      
-      
-      </div>
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
